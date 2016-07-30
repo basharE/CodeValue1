@@ -1,0 +1,34 @@
+*************************************************************
+  IL_0000:  nop
+  IL_0001:  ldarg.0 - load the first argument (a)
+  IL_0002:  ldarg.1 - load the second argument (b)
+  IL_0003:  add - add the first argument to the second 
+  IL_0004:  stloc.0 - store the result in the first argument
+  IL_0005:  br.s       IL_0007 - branch to the addres IL_0007
+  IL_0007:  ldloc.0 - load the result from the first argument 
+  IL_0008:  ret - return the load value 
+} // end of method Calc::Add
+
+
+
+*************************************************************
+the "calc.il" file contain the IL code of the class Calc
+
+
+
+*************************************************************
+3.g.iii.
+the class "calc" most defined as public not private
+
+
+*************************************************************
+3.g.iv.
+the module name which stored in the cal.netmodule must be the 
+same name of the "calc" and not "add" so we should change it 
+to be "calc.netmodule"
+
+
+*************************************************************
+3.g.x
+the metadata of the class include all it's variables and functions 
+
