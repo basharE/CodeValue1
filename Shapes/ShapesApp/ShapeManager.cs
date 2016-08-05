@@ -39,7 +39,7 @@ namespace ShapesApp
 
         public void Save(StringBuilder sb)
         {
-            foreach (IPersist a in myAL)
+            foreach (IPersist a in myAL)//Bug: Not every item in this collection implements IPersist
             {
                 a.Write(sb);
             }

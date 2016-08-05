@@ -75,6 +75,7 @@ namespace ShapeLib
         //d
         public override void Display()
         {
+            //In order for the console output to be colorful, you need to do this: 'base.Display()'
             Console.WriteLine("Rectangle Width : " + Width + " and Rectangle Height : " + Height + " ,Rectangle Color is : " + _color);
         }
 
@@ -85,6 +86,9 @@ namespace ShapeLib
 
         public int CompareTo(object obj)
         {
+            /**When implementing an interface, do take the time to read it's documentation so that your implementation will behave as expected
+             * Consider: https://msdn.microsoft.com/en-us/library/system.icomparable(v=vs.110).aspx
+             */
             if (obj == null) return 1;
             Rectangle e = obj as Rectangle;
 

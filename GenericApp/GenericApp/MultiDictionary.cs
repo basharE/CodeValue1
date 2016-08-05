@@ -7,6 +7,7 @@ using System.Threading;
 
 namespace GenericApp
 {
+    
     public class MultiDictionary<TK, TV> : IMultiDictionary<TK, TV>, IEnumerable<KeyValuePair<TK, IEnumerable<TV>>>
     {
         private readonly Dictionary<TK, LinkedList<TV>> _dic = new Dictionary<TK, LinkedList<TV>>();
@@ -29,14 +30,14 @@ namespace GenericApp
                     {
                         LinkedList<TV> l = new LinkedList<TV>();
                         l.AddLast(value);
-                        Monitor.Enter(_dic);
+                        Monitor.Enter(_dic);//Where's the exit? You are creating a deadlock..
                         _dic.Add(key, l);
                     }
                     else
                     {
                         if (!_dic[key].Contains(value))
                         {
-                            Monitor.Enter(_dic);
+                            Monitor.Enter(_dic);//Where's the exit? You are creating a deadlock..
                             _dic[key].AddLast(value);
                         }
                     }
@@ -80,10 +81,13 @@ namespace GenericApp
         {
             lock (_sync)
             {
+                //The loop is redundant.
                 foreach (KeyValuePair<TK, LinkedList<TV>> a in _dic)
                 {
                     a.Value.Clear();
                 }
+
+                //This is the only line you really need
                 _dic.Clear();
             }
             
